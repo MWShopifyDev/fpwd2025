@@ -114,11 +114,10 @@ class ModalDialog extends HTMLElement {
       const currencyText = button.dataset.currency ? `(${button.dataset.currency})` : '';
       if (currencyText) {
         var currencyTextWhole = "Currency: " + currencyText;
-        option.textContent = `${button.dataset.country} ${currencyTextWhole}`;
+        option.textContent = `${button.dataset.country} ${currencyText}`;
       } else {
         option.textContent = `${button.dataset.country}`;
       }
-      option.textContent = `${button.dataset.country} ${currencyText}`;
       select.appendChild(option);
     });
 

@@ -1,34 +1,26 @@
-
-    <!-- GeoDialog Component (Modal) -->
-    <geo-dialog id="welcome-modal" data-redirection-type="{{ section.settings.redirection_or_currency }}">
-      <!-- Custom modal content could go here -->
-    </geo-dialog>
-
-  <script src="{{ 'app.js' | shopify_asset_url }}" defer></script>
-
   <div hidden>
-  <ul id="subdomain-buttons">
-      {% if section.settings.redirection_or_currency == 'currency_selection' %}        
-      {% assign currency_mappings = section.settings.currency_mapping | split: "," %}
-      {% for currency_mapping in currency_mappings %}
-        {% assign country_name = currency_mapping | split: ":" | first %}
-        {% assign currency = currency_mapping | split: ":" | last %}
-        <li>
-          <button class="subdomain-btn" data-subdomain="{{ currency_mapping | strip }}" data-currency="{{ currency | strip }}"  data-url="{{ currency | strip }}" data-country="{{ country_name | strip}}">{{ country_name }} {{ currency }}</button>
-        </li>
-      {% endfor %}
-    {% else %}
-        {% assign subdomain_mappings = section.settings.subdomain_mapping | split: "," %}
-      {% for subdomain_mapping in subdomain_mappings %}
-        {% assign country_name = subdomain_mapping | split: ":" | first %}
-        {% assign country_url = subdomain_mapping | split: ":" | last %}
-        <li>
-          <button class="subdomain-btn" data-subdomain="{{ subdomain_mapping | strip }}" data-url="{{ country_url | strip }}" data-country="{{ country_name | strip }}">{{ country_name }} 
-          </button>
-        </li>
-      {% endfor %}
-    {% endif %}
-  </ul>
+    <ul id="subdomain-buttons">
+        {% if section.settings.redirection_or_currency == 'currency_selection' %}        
+        {% assign currency_mappings = section.settings.currency_mapping | split: "," %}
+        {% for currency_mapping in currency_mappings %}
+          {% assign country_name = currency_mapping | split: ":" | first %}
+          {% assign currency = currency_mapping | split: ":" | last %}
+          <li>
+            <button class="subdomain-btn" data-subdomain="{{ currency_mapping | strip }}" data-currency="{{ currency | strip }}"  data-url="{{ currency | strip }}" data-country="{{ country_name | strip}}">{{ country_name }} {{ currency }}</button>
+          </li>
+        {% endfor %}
+      {% else %}
+          {% assign subdomain_mappings = section.settings.subdomain_mapping | split: "," %}
+        {% for subdomain_mapping in subdomain_mappings %}
+          {% assign country_name = subdomain_mapping | split: ":" | first %}
+          {% assign country_url = subdomain_mapping | split: ":" | last %}
+          <li>
+            <button class="subdomain-btn" data-subdomain="{{ subdomain_mapping | strip }}" data-url="{{ country_url | strip }}" data-country="{{ country_name | strip }}">{{ country_name }} 
+            </button>
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
   </div>
 {% schema %}
 {
@@ -36,7 +28,7 @@
  "settings": [
    {
       "type": "header",
-      "content": "🔻 Example Component Settings",
+      "content": "Settings",
     },
    {
       "type": "select",

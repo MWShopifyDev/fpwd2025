@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location Selection</title>
+  <script src="{{ 'app.js' | shopify_asset_url }}" defer></script>
+</head>
+<body>
+<!---
+  <div class="button-container">
+    <button open-modal="welcome-modal">Learn More</button>
+    <button id="reset-storage">Reset Choice</button>
+  </div>
+-->>
+
+  <!-- Modal Dialog Web Component -->
+  <modal-dialog id="welcome-modal">
+   <!-- <span slot="content">Welcome! Please select your country to continue:</span>-->
+  </modal-dialog>
+
+  <style>
+    .blur {
+      filter: blur(2px);
+    }
+  </style>
+
+  <script>
+    // Handle the "Reset LocalStorage" button
+    // This should be moved into the component itself or else removed
+    // Handy for testing ;)
+    //document.getElementById('reset-storage').addEventListener('click', () => {
+     // localStorage.removeItem('userCountryChoice');
+     // console.log('LocalStorage cleared: userCountryChoice');
+     // alert('Your choice has been reset.');
+    //});
+  </script>
+</body>
+</html>

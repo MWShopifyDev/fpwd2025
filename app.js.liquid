@@ -111,7 +111,9 @@ class ModalDialog extends HTMLElement {
     countryButtons.forEach(button => {
       const option = document.createElement('option');
       option.value = button.dataset.url;
+      
       const currencyText = button.dataset.currency ? `(${button.dataset.currency})` : '';
+      
       if (currencyText) {
         var currencyTextWhole = "Currency: " + currencyText;
         option.textContent = `${button.dataset.country} ${currencyText}`;

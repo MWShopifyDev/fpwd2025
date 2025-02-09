@@ -123,6 +123,7 @@ class ModalDialog extends HTMLElement {
       const selectedCountry = event.target.options[event.target.selectedIndex].text;
 
       if (selectedUrl) {
+
         const timestamp = new Date().getTime();
         const data = {
           location: selectedCountry,
@@ -186,7 +187,7 @@ class ModalDialog extends HTMLElement {
     if (isValidStorage()) {
       console.log(`Valid choice found: ${storedData.location}. Redirecting...`);
       console.log(`URL: ${storedData.url}`);
-      alert("localStorage var: userCountryChoice already set.  Redirecting...");
+      //alert("localStorage var: userCountryChoice already set.  Redirecting...");
       window.location.href = 'https://' + storedData.url;
       return;
     } else {

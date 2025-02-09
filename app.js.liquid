@@ -30,7 +30,7 @@ class ModalDialog extends HTMLElement {
             box-shadow: 1px 1px 2px grey;
             cursor: pointer;
           }
-          #close {
+          #close, #closea {
             border: none;
             border-radius: 2px;
             font-size: 16px;
@@ -40,20 +40,7 @@ class ModalDialog extends HTMLElement {
             right: 5px;
             z-index: 1000;
           }
-          #close:hover {
-            background-color: grey;
-          }
-          #closea {
-            border: none;
-            border-radius: 2px;
-            font-size: 16px;
-            cursor: pointer;
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            z-index: 1000;
-          }
-          #closea:hover {
+          #close:hover, #closea:hover {
             background-color: grey;
           }
         </style>
@@ -62,7 +49,7 @@ class ModalDialog extends HTMLElement {
             <div>
               <img id="country_icon" src="" alt="Opis obrazu" />
               <div>Your location is set to: <strong><span id="location"></span></strong></div> 
-              <div>Currency: <strong><span id="currency"></span></strong></div>
+              <div><span id="currency"></span></div>
               <div>Get shipping options for <span id="shipping_location"></span></div>
               <div>
                 <button id="continue">Continue</button>
@@ -124,8 +111,14 @@ class ModalDialog extends HTMLElement {
     countryButtons.forEach(button => {
       const option = document.createElement('option');
       option.value = button.dataset.url;
-      const currency = button.dataset.currency ? `(${button.dataset.currency})` : '';
-      option.textContent = `${button.dataset.country} ${currency}`;
+      const currencyText = button.dataset.currency ? `(${button.dataset.currency})` : '';
+      if (currencyText) {
+        var currencyTextWhole = "Currency: " + currencyText;
+        option.textContent = `${button.dataset.country} ${currencyTextWhole}`;
+      } else {
+        option.textContent = `${button.dataset.country}`;
+      }
+      option.textContent = `${button.dataset.country} ${currencyText}`;
       select.appendChild(option);
     });
 
@@ -161,8 +154,8 @@ class ModalDialog extends HTMLElement {
 
     const countryData = await this.getCountryData();
     let filteredButtons = Array.from(countryButtons).filter(button => button.dataset.country === countryData.name);
-    var currentCurrency = filteredButtons[0].getAttribute('data-currency');
-    currency.textContent = currentCurrency;
+    const currentCurrency = filteredButtons[0].getAttribute('data-currency');
+    currency.textContent = currentCurrency ? `Currency: ${currentCurrency}` : '';
 
     selectCountry.hidden = countryData;
     if (countryData) {
